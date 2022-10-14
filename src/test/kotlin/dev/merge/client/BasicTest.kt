@@ -27,26 +27,27 @@ internal class BasicTest {
         mapper.enable(SerializationFeature.INDENT_OUTPUT)
 
         val apiKey = "REDACTED"
+        val accountToken = "REDACTED"
 
         val accountsApi = AccountsApi()
         accountsApi.setApiKey(apiKey)
-        accountsApi.setAccountToken("REDACTED")
+        accountsApi.setAccountToken(accountToken)
 
         val candidatesApi = CandidatesApi()
         candidatesApi.setApiKey(apiKey)
-        candidatesApi.setAccountToken("REDACTED")
+        candidatesApi.setAccountToken(accountToken)
 
         val contactsApi = ContactsApi()
         contactsApi.setApiKey(apiKey)
-        contactsApi.setAccountToken("REDACTED")
-
+        contactsApi.setAccountToken(accountToken)
+        
         val employeesApi = EmployeesApi()
         employeesApi.setApiKey(apiKey)
-        employeesApi.setAccountToken("REDACTED")
+        employeesApi.setAccountToken(accountToken)
 
         val ticketsApi = TicketsApi()
         ticketsApi.setApiKey(apiKey)
-        ticketsApi.setAccountToken("REDACTED")
+        ticketsApi.setAccountToken(accountToken)
 
         // make requests async
 

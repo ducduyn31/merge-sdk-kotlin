@@ -1,5 +1,7 @@
 package dev.merge.client.shared
 
+import io.ktor.http.*
+
 /**
  * Defines a config object for a given request.
  * NOTE: This object doesn't include 'body' because it
@@ -12,6 +14,7 @@ data class RequestConfig<T>(
     val method: RequestMethod,
     val path: String,
     val headers: MutableMap<String, String> = mutableMapOf(),
+    val contentType: ContentType? = ContentType.Application.Json,
     val query: MutableMap<String, List<String>> = mutableMapOf(),
     val body: T? = null
 )
