@@ -10,17 +10,23 @@ import dev.merge.client.ats.models.SyncStatus
 import dev.merge.client.ats.models.SyncStatusStatusEnum
 import dev.merge.client.crm.apis.ContactsApi
 import dev.merge.client.hris.apis.EmployeesApi
+import dev.merge.client.hris.apis.PassthroughApi
+import dev.merge.client.hris.models.DataPassthroughRequest
+import dev.merge.client.hris.models.MethodEnum
+import dev.merge.client.hris.models.RequestFormatEnum
 import dev.merge.client.shared.ApiClient
 import dev.merge.client.ticketing.apis.TicketsApi
 import io.ktor.client.plugins.*
 import io.ktor.http.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
+import net.minidev.json.JSONObject
 import kotlin.test.*
 
 internal class BasicTest {
     @Test
     @Ignore
-    @kotlinx.coroutines.ExperimentalCoroutinesApi
+    @ExperimentalCoroutinesApi
     fun testAllCategoriesSimple() = runTest {
         val mapper = ObjectMapper()
         mapper.findAndRegisterModules()
@@ -171,5 +177,37 @@ internal class BasicTest {
         val deserializedSyncStatus = ApiClient.JSON_DEFAULT.readValue(rawSyncStatus, SyncStatus::class.java)
 
         assertEquals(SyncStatusStatusEnum.MERGE_NONSTANDARD_VALUE, deserializedSyncStatus.status)
+    }
+
+    @Test
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun advanceTest() = runTest {
+        val apiKey = "<redacted>"
+        val accountToken = "<redacted>"
+
+        val passthroughApi = PassthroughApi().apply {
+            setApiKey(apiKey)
+            setAccountToken(accountToken)
+        }
+
+        val response = passthroughApi.passthroughCreate(
+            PassthroughApi.PassthroughCreateRequest(
+                DataPassthroughRequest(
+                    method = MethodEnum.POST,
+                    path = "/employees/110",
+                    headers = mapOf(
+                        HttpHeaders.ContentType to "application/json",
+                        HttpHeaders.Accept to "application/json",
+                    ),
+                    data = JSONObject.toJSONString(mapOf(
+                        "status" to "Active"
+                    )),
+                    requestFormat = RequestFormatEnum.JSON,
+                    normalizeResponse = true
+                )
+            )
+        )
+
+        assertEquals(200, response.status)
     }
 }
