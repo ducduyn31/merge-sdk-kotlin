@@ -97,7 +97,7 @@ publishing {
             url 'https://multiplier-artifacts-778085304246.d.codeartifact.ap-southeast-1.amazonaws.com/maven/multiplier-artifacts/'
             credentials {
                 username "aws"
-                password "eyJ2ZXIiOjEsImlzdSI6MTY2NTczMDg3NywiZW5jIjoiQTEyOEdDTSIsInRhZyI6IkRkNXV1anJaX2dtbXM2Qmh4bmRGV1EiLCJleHAiOjE2NjU3NzQwNzcsImFsZyI6IkExMjhHQ01LVyIsIml2IjoiODFhLWJvMEgybGltNml6bSJ9.i4lItWcLQr4e9aDhhAD6LA.G5BNlJA4pnBY_jnK.rcBYviBc6IGaeO9qyqgR0pn3g4XaHWS11L941n4JjvYMt9xvePYvdZQ0iOYHOrMZSe4nCr63cwG4vayiUM1whevYL2HkqlVJii4212cUIxhOu_z8la_AtrBGgnWO4AMaZL50BxIfS-91m-4UVNwcHp70X2Xa7y2S2zQdI7Kc5d-zJ_FAEdUABoPTK98JB9rgFCtkhtWdm21rQci5RGqJkDCiVFQ9HURjoNuv7FsK8j6PcKRlKMpT1GomBRl7byPMcieu-raGOZhAFcyScL4D2cmg5H1AXqyCecpwq08Fm-dbUYThkPfYXXfFV6Zg5S-Xsp_8sOxJ8P5aWkP7DFVv9QMxyfTlsFcaurp9dvo1DbgeSZJP8YFt0k0AGgcCRbtAw9HC6e2T6KLKnJ6wj0Lpk5yvYYH3vKelRvVoLTMoUXvTeohZ8bDhMgccgfhphMxD7UxBcBb-HZqvQ4yg0aE2MqLp8eVjENJD63pFFOltExlWjNJp8i5b9_MS8Cd4BsaW2IauZHTQY5s1xNoEj3ZECOKm_dMg2-F1Y62AleVJCM7lF9OQ-Yrlxo1gLVowckQR0JBLH8BcQc-cdYNTE8cIifK6pK5YOdVMaq8XtIaTkMGWr2z5ESROk_GpNVKY7gaUv097oPGYP9AihDhbvfRuFO5U02DiRIyv13B-2MExDKn1QfkrTSoDxNU2GprthvCAoVj1UqQ6Wml7Vlf3L1lvSkCoOuUHNMnHGo7APk-28FEZ_C21X7_gAbWC4avpTqF-kd03jQOEF2cwiEAQZGenAFVWXVczQ7wvO4YPL_6uxGzFWsx5FOV7uWS5kOD2z4tT35Vg6m5mkUd6e-LPptBfvsQOIUo0Tv-qjN9HuZoxeqlGNV4HwmV8DN6KLha1DP2GLJLbcXH5WbEDuq7lecW2QHxZc-Bz5lu3mrJV.9tYD80QgNvrp7_VzqAoY1w"
+                password System.getenv("CODEARTIFACT_AUTH_TOKEN")
             }
         }
     }
