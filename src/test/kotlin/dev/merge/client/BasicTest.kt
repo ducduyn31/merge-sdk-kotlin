@@ -11,9 +11,7 @@ import dev.merge.client.ats.models.SyncStatusStatusEnum
 import dev.merge.client.crm.apis.ContactsApi
 import dev.merge.client.hris.apis.EmployeesApi
 import dev.merge.client.hris.apis.PassthroughApi
-import dev.merge.client.hris.models.DataPassthroughRequest
-import dev.merge.client.hris.models.MethodEnum
-import dev.merge.client.hris.models.RequestFormatEnum
+import dev.merge.client.hris.models.*
 import dev.merge.client.shared.ApiClient
 import dev.merge.client.ticketing.apis.TicketsApi
 import io.ktor.client.plugins.*
@@ -21,6 +19,7 @@ import io.ktor.http.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import net.minidev.json.JSONObject
+import java.time.OffsetDateTime
 import kotlin.test.*
 
 internal class BasicTest {
@@ -177,6 +176,32 @@ internal class BasicTest {
         val deserializedSyncStatus = ApiClient.JSON_DEFAULT.readValue(rawSyncStatus, SyncStatus::class.java)
 
         assertEquals(SyncStatusStatusEnum.MERGE_NONSTANDARD_VALUE, deserializedSyncStatus.status)
+    }
+
+    @Test
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun createEmployeeTest() = runTest {
+        val apiKey = "redacted"
+        val accountToken = "redacted"
+
+        val employeesApi = EmployeesApi().apply {
+            setApiKey(apiKey)
+            setAccountToken(accountToken)
+        }
+
+        val response = employeesApi.employeesCreate(
+            EmployeesApi.EmployeesCreateRequest(
+                employeeEndpointRequest = EmployeeEndpointRequest(
+                    EmployeeRequest(
+                        firstName = "Demo",
+                        lastName = "Demo",
+                        dateOfBirth = OffsetDateTime.now(),
+                    )
+                )
+            )
+        )
+
+        println(response)
     }
 
     @Test
