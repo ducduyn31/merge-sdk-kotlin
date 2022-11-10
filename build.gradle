@@ -21,7 +21,7 @@ plugins {
 }
 
 group 'dev.merge'
-version '2.0.2-multiplier-patch-2'
+version '2.0.3-multiplier-patch-2'
 
 wrapper {
     gradleVersion = '6.8.3'
@@ -52,10 +52,12 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 task javadocJar(type: Jar) {
+    classifier = 'javadoc'
     from javadoc
 }
 
 task sourcesJar(type: Jar) {
+    classifier = 'sources'
     from sourceSets.main.allSource
 }
 
